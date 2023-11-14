@@ -1,0 +1,77 @@
+{
+  "version": "0.1.0",
+  "name": "bgl_path_validator",
+  "instructions": [
+    {
+      "name": "validateU8",
+      "accounts": [
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": "ValidateU8Args"
+          }
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "ValidateU8Args",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "proof",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "path",
+            "type": "bytes"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "IncorrectPath",
+      "msg": "Incorrect path"
+    },
+    {
+      "code": 6001,
+      "name": "MaxSpeedExceeded",
+      "msg": "Max speed exceeded"
+    },
+    {
+      "code": 6002,
+      "name": "IncorrectPathAndMaxSpeedExceeded",
+      "msg": "Incorrect path and max speed exceeded"
+    }
+  ],
+  "metadata": {
+    "address": "PATHrLe2WkDq1WS9df5dSuZ5MhnZZzGZmXcj4wGFCys"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "version": "0.1.0",
+  "name": "wallet_tracker",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "record",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "identifier",
+          "type": "publicKey"
+        },
+        {
+          "name": "entries",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "close",
+      "accounts": [
+        {
+          "name": "record",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claimWinProof",
+      "accounts": [
+        {
+          "name": "winProof",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "walletRecord",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "leafRecord",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "wallet",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "leafId",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Record",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "identifier",
+            "type": "publicKey"
+          },
+          {
+            "name": "entries",
+            "type": "u16"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WinProof",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "winnerWallet",
+            "type": "publicKey"
+          },
+          {
+            "name": "winnerTree",
+            "type": "publicKey"
+          },
+          {
+            "name": "winnerLeafId",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "UnableToFindBump",
+      "msg": "Unable to find bump."
+    }
+  ]
+}
